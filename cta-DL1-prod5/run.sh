@@ -19,9 +19,9 @@ rm -f /tmp/${OUTPUTFILE}*
 
 # select correct calibration file
 if [[ $DATAFILE == *"dark"* ]]; then
-	IPRFILE=${CTA_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-IPR.root
+	IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-IPR.root
 else
-	IPRFILE=${CTA_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-halfmoon-IPR.root
+	IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-halfmoon-IPR.root
 fi
 
 ###########
@@ -30,8 +30,8 @@ if [[ ! -e ${IPRFILE} ]]; then
 	echo "Error; IPR file not found: ${IPRFILE}"
 	exit
 fi
-if [[ ! -e $CTA_EVNDISP_AUX_DIR/DetectorGeometry/${LAYOUTFILE} ]]; then
-	echo "Error; Layout file not found: $CTA_EVNDISP_AUX_DIR/DetectorGeometry/${LAYOUTFILE}"
+if [[ ! -e $OBS_EVNDISP_AUX_DIR/DetectorGeometry/${LAYOUTFILE} ]]; then
+	echo "Error; Layout file not found: $OBS_EVNDISP_AUX_DIR/DetectorGeometry/${LAYOUTFILE}"
 	exit
 fi
 if [[ ! -e ${DATAFILE} ]]; then
@@ -42,7 +42,7 @@ fi
 ###########
 # run analysis
 ${EVNDISPSYS}/bin/CTA.convert_hessio_to_VDST -c ${IPRFILE} \
-	-a $CTA_EVNDISP_AUX_DIR/DetectorGeometry/${LAYOUTFILE} \
+	-a $OBS_EVNDISP_AUX_DIR/DetectorGeometry/${LAYOUTFILE} \
 	-o /tmp/tmp.dst.root \
 	${DATAFILE} > /tmp/${OUTPUTFILE}.convert.log
 
@@ -53,7 +53,7 @@ $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 \
 
 ###########
 # cleanup
-if [ -e /tmp/${OFILE}.root ]; then
+if [ -e /tmp/${OUTPUTFILE}.root ]; then
 
 	# move log files into evndisp output file
 	if [ -e /tmp/${OUTPUTFILE}.convert.log ]; then

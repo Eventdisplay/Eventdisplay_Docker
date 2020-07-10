@@ -43,19 +43,19 @@ ENV PATH ${ROOTSYS}/bin:${PATH}
 # Install Eventdisplay
 ENV EVNDISPSYS ${EVNDISP}/Eventdisplay-prod5-v1.0
 ENV SOFASYS ${EVNDISPSYS}/sofa/
-ENV CTA_EVNDISP_AUX_DIR ${EVNDISP}/Eventdisplay_AnalysisFiles_CTA-prod5-v1.0
 RUN wget https://github.com/Eventdisplay/Eventdisplay/archive/prod5-v1.0.tar.gz && \
     tar -xzf prod5-v1.0.tar.gz && rm -f prod5-v1.0.tar.gz && \
     cd ${EVNDISPSYS} && \
     ./install_sofa.sh && \
     make -j 2 evndisp CTA.convert_hessio_to_VDST printRunParameter logFile GRIDPROD=CTAGRID CTAPROD=PROD5 && \
-    rm -f ${EVNDISPSYS}/obj/*.o && \
-    source ./setObservatory.sh CTA
+    rm -f ${EVNDISPSYS}/obj/*.o
 
 ENV LD_LIBRARY_PATH "${EVNDISPSYS}/obj:${LD_LIBRARY_PATH}"
 ENV ROOT_INCLUDE_PATH ${EVNDISPSYS}/inc
 
 # Install Eventdisplay Analysis files
+ENV OBS_EVNDISP_AUX_DIR ${EVNDISP}/Eventdisplay_AnalysisFiles_CTA-prod5-v1.0
+ENV OBS_USER_DATA_DIR /tmp/
 RUN wget https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA/archive/prod5-v1.0.tar.gz && \
     tar -xzf prod5-v1.0.tar.gz && \
     rm -f prod5-v1.0.tar.gz
