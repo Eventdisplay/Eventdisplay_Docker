@@ -7,6 +7,6 @@ Experimental Docker files (and later images) are provided for different Eventdis
 The following Docker files are available:
 
 - [CTA DL1 Analysis](./cta-DL1-prod5)
-- VERITAS DL1 Analysis
+- [VERITAS DLX Analysis](./vts-DLX)
 
 
