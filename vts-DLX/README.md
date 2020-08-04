@@ -2,7 +2,7 @@
 
 ## Building
 
-Building expects that a tar ball of vbf (vbf.tar.gz) is available in the building directory.
+Building expects that a tar ball of vbf (VBF-0.3.4.tar.gz) is available in the building directory.
 
 ```
 $ docker build -t eventdisplay-vts-dl1 .
