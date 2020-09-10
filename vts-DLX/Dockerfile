@@ -10,10 +10,12 @@ RUN yes no | dpkg-reconfigure dash
 # Basic packages
 RUN apt-get update && apt-get install -y \
   bash \
+  bzip2 \
   gcc \
   g++ \
   git \
   libblas-dev \
+  libbz2-dev \
   libfreetype6 \
   libxpm4 \
   libxtst6 \
