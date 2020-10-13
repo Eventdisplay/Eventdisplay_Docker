@@ -8,6 +8,8 @@ Building expects that a tar ball of hessioxx (hessioxxx.tar.gz) is available in 
 $ docker build -t eventdisplay-cta-dl1 .
 ```
 
+Download hessioxx from https://www.mpi-hd.mpg.de/hfm/CTA/MC/Software/Testing/hessioxxx.tar.gz (passwd applies)
+
 ## Running
 
 Sim_telarray files and output evndisp root files are read and writting from the ./data directory.

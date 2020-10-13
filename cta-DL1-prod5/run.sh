@@ -46,7 +46,7 @@ ${EVNDISPSYS}/bin/CTA.convert_hessio_to_VDST -c ${IPRFILE} \
 	-o /tmp/tmp.dst.root \
 	${DATAFILE} > /tmp/${OUTPUTFILE}.convert.log
 
-$EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 \
+$EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 -imagesquared \
        	-reconstructionparameter EVNDISP.prod5.reconstruction.runparameter \
        	-sourcefile /tmp/tmp.dst.root \
        	-outputfile /tmp/${OUTPUTFILE}.root > /tmp/${OUTPUTFILE}.evndisp.log
@@ -54,7 +54,6 @@ $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 \
 ###########
 # cleanup
 if [ -e /tmp/${OUTPUTFILE}.root ]; then
-
 	# move log files into evndisp output file
 	if [ -e /tmp/${OUTPUTFILE}.convert.log ]; then
 		$EVNDISPSYS/bin/logFile convLog /tmp/${OUTPUTFILE}.root /tmp/${OUTPUTFILE}.convert.log
