@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# run a Eventdisplay DL1 analysis for CTA prod5 simulations
+# run a Eventdisplay DL1 analysis for CTA prod3b SCT simulations
 #
 
 if [ $# -lt 1 ]; then
 	echo "
-	./run.sh <sim_telarray file> <layout file>
+	./run.sh <sim_telarray file> [layout file]
 	echo
-	echo <layout file>   e.g., CTA.prod5S.BL-4LSTs25MSTs70SSTs-MSTF.lis
+	echo [layout file (optional)] e.g., CTA.prod3Sb.SCT.HB9.lis
 	"
         exit
 fi
@@ -41,14 +41,14 @@ fi
 ${EVNDISPSYS}/bin/CTA.convert_hessio_to_VDST -c ${IPRFILE} \
     -pe \
 	-a $OBS_EVNDISP_AUX_DIR/DetectorGeometry/${LAYOUTFILE} \
-	-o /tmp/tmp.dst.root \
+	-o /tmp/${OUTPUTFILE}.dst.root \
 	${DATAFILE} > /tmp/${OUTPUTFILE}.convert.log
 
 # image squared weighting analysis (default)
 $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 -imagesquared \
         -writeimagepixellist -ignoredstgains \
        	-reconstructionparameter EVNDISP.prod3.reconstruction.runparameter.NN.LL \
-       	-sourcefile /tmp/tmp.dst.root \
+       	-sourcefile /tmp/${OUTPUTFILE}.dst.root \
        	-outputfile /tmp/${OUTPUTFILE}.root > /tmp/${OUTPUTFILE}.evndisp.log
 
 # image linear weighting analysis (default)

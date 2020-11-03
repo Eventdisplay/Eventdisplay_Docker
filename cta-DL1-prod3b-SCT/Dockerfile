@@ -19,9 +19,10 @@ RUN apt-get update && apt-get install -y \
   make \
   unzip \
   vim \
-  wget \
-  zstd
-RUN apt-get clean
+  wget
+
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install hessioxx 
 COPY hessioxxx.tar.gz .
