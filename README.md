@@ -44,7 +44,7 @@ For a discussion on how to convert a Dockerfile into sinularity recipies, see [h
 Running singularity:
 ```
 singularity exec -e --bind $(PWD)/sing_data:/data eventdisplay-cta-dl1-prod3b-sct_v01.sif /evndisp/run.sh gamma_20deg_0deg_run100___cta-prod3-sct_desert-2150m-Paranal-SCT.simtel.gz
-``
+```
 
 
 
