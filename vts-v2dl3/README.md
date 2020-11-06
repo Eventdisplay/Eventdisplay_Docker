@@ -6,10 +6,8 @@ Note that this Dockerfile (still) depends on Eventdisplay v4x and requires acces
 
 ## Building
 
-Building expects that a tar ball of vbf (VBF-0.3.4.tar.gz) is available in the building directory.
-
 ```
-$ docker build -t eventdisplay-vts-v2dl3 .
+$ docker build --build-arg GITUSER="my-git-username" --build-arg GITPW="my-gitpassword" -t eventdisplay-vts-v2dl3 .
 ```
 
 ## Running
