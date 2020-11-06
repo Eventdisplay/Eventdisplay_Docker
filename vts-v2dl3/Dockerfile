@@ -33,6 +33,7 @@ RUN conda update -n base -c defaults conda && \
 	conda install -c conda-forge root && \
 	conda install -c conda-forge uproot && \
 	conda install -c conda-forge matplotlib seaborn scipy root_numpy numpy astropy cython pkgconfig nb_conda_kernels && \
+    conda clean --all && \
 	/bin/bash -c "conda env list"
 
 ## Install Eventdisplay
@@ -42,7 +43,7 @@ ENV EVNDISPSYS ${EVNDISP}/EventDisplay_v4
 RUN git clone https://$GITUSER:$GITPW@github.com/VERITAS-Observatory/EventDisplay_v4.git && \
     cd ${EVNDISPSYS} && \
 	sed -i 's/-std=c++11/-std=c++17/g' Makefile && \
-    make -j 4 anasum slib
+    make -j 4 slib
 ENV LD_LIBRARY_PATH "${EVNDISPSYS}/obj:${LD_LIBRARY_PATH}"
 ENV ROOT_INCLUDE_PATH ${EVNDISPSYS}/inc
 
