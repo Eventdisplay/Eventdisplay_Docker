@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
   libbz2-dev \
   libfreetype6 \
   libxpm4 \
+  libtiff-dev \
   libxtst6 \
   make \
   unzip \
@@ -44,14 +45,19 @@ ENV PATH ${ROOTSYS}/bin:${PATH}
 # Install Eventdisplay
 ENV EVNDISPSYS ${EVNDISP}/Eventdisplay/
 ENV SOFASYS ${EVNDISPSYS}/sofa/
-RUN git clone https://github.com/Eventdisplay/Eventdisplay.git && \
-    cd ${EVNDISPSYS} && \
-    ./install_sofa.sh && \
-    make -j 8 slib
+RUN wget https://github.com/Eventdisplay/Eventdisplay/archive/master.zip && \
+    unzip master.zip && rm -f master.zip && \
+    mv -f Eventdisplay-master Eventdisplay && \
+    cd ${EVNDISPSYS} && ls -l && ./install_sofa.sh && \
+    make -j 2 slib && strip -g lib/libVAnaSum.so &&  \
+    rm -f obj/*.o obj/*.cpp
 
 ENV LD_LIBRARY_PATH "${EVNDISPSYS}/obj:${LD_LIBRARY_PATH}"
 ENV ROOT_INCLUDE_PATH ${EVNDISPSYS}/inc
 
 # Install Eventdisplay Analysis files
-RUN git clone https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA.git
+RUN wget https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA/archive/master.zip && \
+    unzip master.zip && \
+    mv -f Eventdisplay_AnalysisFiles_CTA-master Eventdisplay_AnalysisFiles_CTA && \
+    rm -f master.zip
 ENV CTA_EVNDISP_AUX_DIR /home/${username}/Eventdisplay_AnalysisFiles_CTA/
