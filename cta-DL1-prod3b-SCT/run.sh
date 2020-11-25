@@ -55,11 +55,12 @@ $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 -imagesquared \
 $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 \
         -writeimagepixellist -ignoredstgains \
        	-reconstructionparameter EVNDISP.prod3.reconstruction.runparameter.NN.LL \
-       	-sourcefile /tmp/tmp.dst.root \
+       	-sourcefile /tmp/${OUTPUTFILE}.dst.root \
        	-outputfile /tmp/${OUTPUTFILE}.lin.root > /tmp/${OUTPUTFILE}.evndisp.lin.log
 
 ###########
 # cleanup
+rm -f /tmp/${OUTPUTFILE}.dst.root
 if [ -e /tmp/${OUTPUTFILE}.root ]; then
 	# move log files into evndisp output file
 	if [ -e /tmp/${OUTPUTFILE}.convert.log ]; then

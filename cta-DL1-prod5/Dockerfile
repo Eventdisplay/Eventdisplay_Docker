@@ -35,9 +35,9 @@ ENV HESSIOSYS ${EVNDISP}/hessioxxx
 ENV LD_LIBRARY_PATH "${HESSIOSYS}/lib:${LD_LIBRARY_PATH}"
 
 # Install ROOT
-RUN wget https://root.cern/download/root_v6.22.00.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
-    tar -xzf root_v6.22.00.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
-    rm -f root_v6.22.00.Linux-ubuntu20-x86_64-gcc9.3.tar.gz
+RUN wget https://root.cern/download/root_v6.22.02.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
+    tar -xzf root_v6.22.02.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
+    rm -f root_v6.22.02.Linux-ubuntu20-x86_64-gcc9.3.tar.gz
 ENV ROOTSYS ${EVNDISP}/root
 ENV LD_LIBRARY_PATH "${ROOTSYS}/lib/:${LD_LIBRARY_PATH}"
 ENV PATH ${ROOTSYS}/bin:${PATH}

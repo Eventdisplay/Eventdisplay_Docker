@@ -7,7 +7,7 @@ if [ $# -lt 1 ]; then
 	echo "
 	./run.sh <sim_telarray file> [layout file]
 	echo
-	echo [layout file (optional)]   e.g., CTA.prod5S.BL-4LSTs25MSTs70SSTs-MSTF.lis
+	echo [layout file (optional)] e.g., CTA.prod5S.BL-4LSTs25MSTs70SSTs-MSTF.lis
 	"
         exit
 fi
@@ -66,6 +66,7 @@ $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 -imagesquared \
 
 ###########
 # cleanup
+rm -f /tmp/${OUTPUTFILE}.dst.root
 if [ -e /tmp/${OUTPUTFILE}.root ]; then
 	# move log files into evndisp output file
 	if [ -e /tmp/${OUTPUTFILE}.convert.log ]; then
