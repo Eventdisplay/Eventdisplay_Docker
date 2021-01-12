@@ -7,6 +7,7 @@ Building expects that a tar ball of hessioxx (hessioxxx.tar.gz) is available in 
 ```
 $ docker build -t eventdisplay-cta-dl1-prod5 .
 ```
+(for rebuilt with `--no-cache`)
 
 Download hessioxx from https://www.mpi-hd.mpg.de/hfm/CTA/MC/Software/Testing/hessioxxx.tar.gz (passwd applies)
 
@@ -31,3 +32,17 @@ $ run.sh \
     /data/gamma_20deg_0deg_run9___cta-prod5-paranal_desert-2147m-Paranal-dark_cone10.simtel.zst \
     CTA.prod5S.BL-4LSTs25MSTs70SSTs-MSTF.lis
 ```
+
+## Containers
+
+Containers to be used for prod5 analysis are available throught dockerhub: 
+
+https://hub.docker.com/r/gernotmaier/eventdisplay-cta-dl1-prod5
+
+```
+docker pull gernotmaier/eventdisplay-cta-dl1-prod5
+```
+
+## Using singularity
+
+see [main README.md](../README.md)
