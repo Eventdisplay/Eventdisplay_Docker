@@ -33,8 +33,14 @@ rm -f /tmp/${OUTPUTFILE}*
 # calibration file
 if [[ $DATAFILE == *"dark"* ]]; then
 	IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-IPR.root
+    if [[ $DATAFILE == *"60deg"* ]]; then
+        IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-ze-60-IPR.root
+    fi
 else
 	IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-halfmoon-IPR.root
+    if [[ $DATAFILE == *"60deg"* ]]; then
+        IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-halfmoon-ze-60-IPR.root
+    fi
 fi
 
 ###########
