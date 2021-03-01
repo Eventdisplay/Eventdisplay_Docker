@@ -35,11 +35,15 @@ if [[ $DATAFILE == *"dark"* ]]; then
 	IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-IPR.root
     if [[ $DATAFILE == *"60deg"* ]]; then
         IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-ze-60-IPR.root
+    elif [[ $DATAFILE == *"40deg"* ]]; then
+        IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-ze-40-IPR.root
     fi
 else
 	IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-halfmoon-IPR.root
     if [[ $DATAFILE == *"60deg"* ]]; then
         IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-halfmoon-ze-60-IPR.root
+    elif [[ $DATAFILE == *"40deg"* ]]; then
+        IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod5/prod5-halfmoon-ze-40-IPR.root
     fi
 fi
 
@@ -81,5 +85,5 @@ if [ -e /tmp/${OUTPUTFILE}.root ]; then
 	if [ -e /tmp/${OUTPUTFILE}.evndisp.log ]; then
 		$EVNDISPSYS/bin/logFile evndispLog /tmp/${OUTPUTFILE}.root /tmp/${OUTPUTFILE}.evndisp.log
     fi
-	mv -f -v /tmp/${OUTPUTFILE}.root /data/
+    mv -f -v /tmp/${OUTPUTFILE}.root /data/
 fi
