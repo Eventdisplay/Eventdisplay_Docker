@@ -46,6 +46,12 @@ Running singularity:
 singularity exec -e --bind $(PWD)/sing_data:/data eventdisplay-cta-dl1-prod3b-sct_v01.sif /evndisp/run.sh gamma_20deg_0deg_run100___cta-prod3-sct_desert-2150m-Paranal-SCT.simtel.gz
 ```
 
+Using directly the docker image:
+```
+singularity shell docker://gernotmaier/eventdisplay-cta-slib:v03
+```
+(remember possibly to set singularity cache to a different directory using $SINGULARITY_CACHEDIR
+
 # Container and CTA
 
 See [redmine](https://forge.in2p3.fr/projects/cta_dirac/wiki/Notes_on_containers) for discussion of usage of containers in CTA.
