@@ -28,11 +28,13 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean
 
 # Introduce user evndisp - stop being root
-ARG username=evndisp
-RUN useradd --create-home --home-dir /home/${username} ${username}
-USER ${username}
-WORKDIR /home/${username}
-ENV EVNDISP /home/${username}
+#ARG username=evndisp
+#RUN useradd --create-home --home-dir /home/${username} ${username}
+#USER ${username}
+#WORKDIR /home/${username}
+#ENV EVNDISP /home/${username}
+WORKDIR /home/
+ENV EVNDISP /home/
 
 # Install ROOT
 RUN wget https://root.cern/download/root_v6.22.00.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
@@ -60,4 +62,4 @@ RUN wget https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA/archive/
     unzip master.zip && \
     mv -f Eventdisplay_AnalysisFiles_CTA-master Eventdisplay_AnalysisFiles_CTA && \
     rm -f master.zip
-ENV CTA_EVNDISP_AUX_DIR /home/${username}/Eventdisplay_AnalysisFiles_CTA/
+ENV CTA_EVNDISP_AUX_DIR /home/Eventdisplay_AnalysisFiles_CTA/
