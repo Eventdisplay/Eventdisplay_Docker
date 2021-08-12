@@ -1,10 +1,12 @@
 # Eventdisplay CTA DL1 Docker file - prod3b Alpha + SCT analysis
 
-This Docker file and run scripts prepare following workflow:
+This Docker file and run script prepare the following workflow:
 
 1. extraction of CTA South Alpha configuration (approximation) from a prod3b file
 2. merging with CTA SCT prod3b telescope (41 telescopes)
 3. DL1 Eventdisplay analysis
+
+The list of telescopes to be extracted in step 1 is given in [CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF.lis](CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF.lis)
 
 ## Building
 
