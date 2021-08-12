@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install hessioxx twice
+# Install hessioxx 2x
 # (for extraction and merging)
 COPY hessioxxx.tar.gz .
 # extraction
@@ -55,6 +55,27 @@ ENV PATH ${ROOTSYS}/bin:${PATH}
 
 # Layout files 
 COPY CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF.lis .
+
+# Install Eventdisplay
+ENV EVNDISPSYS ${WORKDIR}/Eventdisplay-prod3b-v11
+ENV SOFASYS ${EVNDISPSYS}/sofa/
+RUN wget https://github.com/Eventdisplay/Eventdisplay/archive/refs/heads/prod3b-v11.zip && \
+    unzip prod3b-v11.zip && rm -f prod3b-v11.zip && \
+    cd ${EVNDISPSYS} && \
+    ./install_sofa.sh && \
+    make -j 4 evndisp CTA.convert_hessio_to_VDST printRunParameter logFile GRIDPROD=CTAGRID CTAPROD=PROD3b_SCTALPHA && \
+    rm -f ${EVNDISPSYS}/obj/*.o
+
+ENV LD_LIBRARY_PATH "${SYS}/obj:${EVNDISPSYS}/lib:${LD_LIBRARY_PATH}"
+ENV ROOT_INCLUDE_PATH ${SYS}/inc
+
+# Install Eventdisplay Analysis files
+ENV OBS__AUX_DIR ${WORKDIR}/Eventdisplay_AnalysisFiles_CTA-prod3b-v11
+ENV CTA__AUX_DIR ${WORKDIR}/Eventdisplay_AnalysisFiles_CTA-prod3b-v11
+ENV OBS_USER_DATA_DIR /tmp/
+RUN wget https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA/archive/refs/heads/prod3b-v11.zip && \
+    unzip prod3b-v11.zip && \
+    rm -f prod3b-v11.zip
 
 # Run script
 COPY run.sh .
