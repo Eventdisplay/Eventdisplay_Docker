@@ -70,8 +70,8 @@ ENV LD_LIBRARY_PATH "${SYS}/obj:${EVNDISPSYS}/lib:${LD_LIBRARY_PATH}"
 ENV ROOT_INCLUDE_PATH ${SYS}/inc
 
 # Install Eventdisplay Analysis files
-ENV OBS__AUX_DIR ${WORKDIR}/Eventdisplay_AnalysisFiles_CTA-prod3b-v11
-ENV CTA__AUX_DIR ${WORKDIR}/Eventdisplay_AnalysisFiles_CTA-prod3b-v11
+ENV OBS_EVNDISP_AUX_DIR ${WORKDIR}/Eventdisplay_AnalysisFiles_CTA-prod3b-v11
+ENV CTA_EVNDISP_AUX_DIR ${WORKDIR}/Eventdisplay_AnalysisFiles_CTA-prod3b-v11
 ENV OBS_USER_DATA_DIR /tmp/
 RUN wget https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA/archive/refs/heads/prod3b-v11.zip && \
     unzip prod3b-v11.zip && \

@@ -24,8 +24,6 @@ if [[ ! -e ${1} ]] || [[ ! -e ${2} ]]; then
 fi
 
 DDIR="/data"
-ls -l ${WORKDIR}/CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF.lis
-
 ################################
 # telescope list
 if [ ! -f ${DDIR}/CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF-1.map ]; then
@@ -43,28 +41,26 @@ LD_LIBRARY_PATH_SAVE=${LD_LIBRARY_PATH}
 unset LD_LIBRARY_PATH
 # temporary alpha file (extracted)
 f1x=$(echo "${ALPHAFILE}" | sed 's/-merged/-extracted/')
-#${WORKDIR}/hessioxxx-extract/bin/extract_simtel \
-#    --map-file ${DDIR}/CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF-1.map \
-#    --min-trg-tel 1 \
-#    "${ALPHAFILE}" "$f1x" || exit 1
+${WORKDIR}/hessioxxx-extract/bin/extract_simtel \
+    --map-file ${DDIR}/CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF-1.map \
+    --min-trg-tel 1 \
+    "${ALPHAFILE}" "$f1x" || exit 1
 
 ################################
 # merge with SCT layout
-f3=$(echo "${ALPHAFILE}" | sed 's/-merged/-final/')
-echo $f1x $f2 $f3
+DATAFILE=$(echo "${ALPHAFILE}" | sed 's/-merged/-final/')
 ${WORKDIR}/hessioxxx/bin/merge_simtel \
     --min-trg-tel 2 --dist-sep 20 \
     ${DDIR}/merge.map \
-    "$f1x" "${SCTFILE}" "$f3" || exit 1
+    "$f1x" "${SCTFILE}" "$DATAFILE" || exit 1
 
 ################################
-LD_LIBRARY_PATH=${LD_LIBRARY_PATH_SAVE}
-exit
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH_SAVE}
+echo ${LD_LIBRARY_PATH}
 
-[[ "$2" ]] && LAYOUTFILE=$2 || LAYOUTFILE="CTA.prod3Sb.SCT.hyperarray.lis"
 OUTPUTFILE=$(basename ${DATAFILE} .zst)
 rm -f /tmp/${OUTPUTFILE}*
-
+LAYOUTFILE="CTA.prod3bS.SCT-Alpha.hyperarray.lis"
 # calibration file
 IPRFILE=${OBS_EVNDISP_AUX_DIR}/Calibration/prod3b/prod3b.Paranal-20171214.ped.root
 
@@ -86,24 +82,15 @@ fi
 ###########
 # run analysis
 ${EVNDISPSYS}/bin/CTA.convert_hessio_to_VDST -c ${IPRFILE} \
-    -pe \
 	-a $OBS_EVNDISP_AUX_DIR/DetectorGeometry/${LAYOUTFILE} \
 	-o /tmp/${OUTPUTFILE}.dst.root \
 	${DATAFILE} > /tmp/${OUTPUTFILE}.convert.log
 
-# image squared weighting analysis (default)
 $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 -imagesquared \
-        -writeimagepixellist -ignoredstgains \
        	-reconstructionparameter EVNDISP.prod3.reconstruction.runparameter.NN.LL \
+        -ignoredstgains \
        	-sourcefile /tmp/${OUTPUTFILE}.dst.root \
        	-outputfile /tmp/${OUTPUTFILE}.root > /tmp/${OUTPUTFILE}.evndisp.log
-
-# image linear weighting analysis (default)
-$EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 \
-        -writeimagepixellist -ignoredstgains \
-       	-reconstructionparameter EVNDISP.prod3.reconstruction.runparameter.NN.LL \
-       	-sourcefile /tmp/${OUTPUTFILE}.dst.root \
-       	-outputfile /tmp/${OUTPUTFILE}.lin.root > /tmp/${OUTPUTFILE}.evndisp.lin.log
 
 ###########
 # cleanup
@@ -116,9 +103,5 @@ if [ -e /tmp/${OUTPUTFILE}.root ]; then
 	if [ -e /tmp/${OUTPUTFILE}.evndisp.log ]; then
 		$EVNDISPSYS/bin/logFile evndispLog /tmp/${OUTPUTFILE}.root /tmp/${OUTPUTFILE}.evndisp.log
     fi
-	if [ -e /tmp/${OUTPUTFILE}.evndisp.lin.log ]; then
-		$EVNDISPSYS/bin/logFile evndispLog /tmp/${OUTPUTFILE}.lin.root /tmp/${OUTPUTFILE}.evndisp.lin.log
-    fi
-	mv -f -v /tmp/${OUTPUTFILE}.root /data/
-	mv -f -v /tmp/${OUTPUTFILE}.lin.root /data/
+    mv -f -v /tmp/${OUTPUTFILE}.root /data/
 fi
