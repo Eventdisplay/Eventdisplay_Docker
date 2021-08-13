@@ -26,8 +26,8 @@ fi
 DDIR="/data"
 ################################
 # telescope list
-if [ ! -f ${DDIR}/CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF-1.map ]; then
-   sed 's/^/1 /' < ${WORKDIR}/CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF.lis > ${DDIR}/CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF-1.map
+if [ ! -f ${DDIR}/CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF-1.map ]; then
+   sed 's/^/1 /' < ${WORKDIR}/CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF.lis > ${DDIR}/CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF-1.map
 fi
 if [ ! -f ${DDIR}/merge.map ]; then
    echo "1 1-51" > ${DDIR}/merge.map
@@ -42,7 +42,7 @@ unset LD_LIBRARY_PATH
 # temporary alpha file (extracted)
 f1x=$(echo "${ALPHAFILE}" | sed 's/-merged/-extracted/')
 ${WORKDIR}/hessioxxx-extract/bin/extract_simtel \
-    --map-file ${DDIR}/CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF-1.map \
+    --map-file ${DDIR}/CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF-1.map \
     --min-trg-tel 1 \
     "${ALPHAFILE}" "$f1x" || exit 1
 

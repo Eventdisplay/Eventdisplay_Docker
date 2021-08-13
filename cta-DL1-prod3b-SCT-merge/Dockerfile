@@ -38,7 +38,7 @@ RUN tar -xvzf hessioxxx.tar.gz && \
 # merging
 RUN tar -xvzf hessioxxx.tar.gz && \
    cd hessioxxx && \
-   make EXTRA_DEFINES="-DCTA_PROD4_SC -DMAXIMUM_TELESCOPES=92" && \
+   make EXTRA_DEFINES="-DCTA_PROD4_SC -DMAXIMUM_TELESCOPES=95" && \
    cd .. && rm -f hessioxxx.tar.gz
 ENV HESSIOSYS ${WORKDIR}/hessioxxx
 ENV LD_LIBRARY_PATH "${HESSIOSYS}/lib:${LD_LIBRARY_PATH}"
@@ -52,9 +52,6 @@ RUN wget https://root.cern/download/root_v6.22.02.Linux-ubuntu20-x86_64-gcc9.3.t
 ENV ROOTSYS ${WORKDIR}/root
 ENV LD_LIBRARY_PATH "${ROOTSYS}/lib/:${LD_LIBRARY_PATH}"
 ENV PATH ${ROOTSYS}/bin:${PATH}
-
-# Layout files 
-COPY CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF.lis .
 
 # Install Eventdisplay
 ENV EVNDISPSYS ${WORKDIR}/Eventdisplay-prod3b-v11
@@ -77,5 +74,7 @@ RUN wget https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA/archive/
     unzip prod3b-v11.zip && \
     rm -f prod3b-v11.zip
 
+# Layout files 
+COPY CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF.lis .
 # Run script
 COPY run.sh .
