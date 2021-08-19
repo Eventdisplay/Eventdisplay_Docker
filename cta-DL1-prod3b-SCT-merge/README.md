@@ -6,7 +6,13 @@ This Docker file and run script prepare the following workflow:
 2. merging with CTA SCT prod3b telescope (41 telescopes)
 3. DL1 Eventdisplay analysis
 
-The list of telescopes to be extracted in step 1 is given in [CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF.lis](CTA.prod3bS-M6C5a-14MSTs37SSTs-MSTF.lis)
+The list of telescopes to be extracted in step 1 is given in [CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF.lis](CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF.lis)
+
+Ready images can be pulled from docker hub with
+```
+docker pull gernotmaier/eventdisplay-cta-dl1-prod3b-sct-merge:v02
+```
+
 
 ## Building
 
