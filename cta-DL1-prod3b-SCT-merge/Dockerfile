@@ -1,4 +1,4 @@
-From ubuntu:20.04
+From ubuntu:16.04
 
 LABEL maintainer.name="Eventdisplay Team"
 LABEL maintainer.email="gernot.maier@desy.de"
@@ -44,9 +44,9 @@ ENV HESSIOSYS ${WORKDIR}/hessioxxx
 ENV LD_LIBRARY_PATH "${HESSIOSYS}/lib:${LD_LIBRARY_PATH}"
 
 # Install ROOT
-RUN wget https://root.cern/download/root_v6.22.02.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
-    tar -xzf root_v6.22.02.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
-    rm -f root_v6.22.02.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
+RUN wget https://root.cern/download/root_v6.22.08.Linux-ubuntu16-x86_64-gcc5.4.tar.gz && \
+    tar -xzf root_v6.22.08.Linux-ubuntu16-x86_64-gcc5.4.tar.gz && \
+    rm -f root_v6.22.08.Linux-ubuntu16-x86_64-gcc5.4.tar.gz && \
     echo /opt/root/lib >> /etc/ld.so.conf && \
     ldconfig
 ENV ROOTSYS ${WORKDIR}/root
