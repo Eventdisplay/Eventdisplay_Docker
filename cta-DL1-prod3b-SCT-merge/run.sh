@@ -30,7 +30,7 @@ if [ ! -f ${DDIR}/CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF-1.map ]; then
    sed 's/^/1 /' < ${WORKDIR}/CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF.lis > ${DDIR}/CTA.prod3bS-M6C5a-14MSTs40SSTs-MSTF-1.map
 fi
 if [ ! -f ${DDIR}/merge.map ]; then
-   echo "1 1-51" > ${DDIR}/merge.map
+   echo "1 1-54" > ${DDIR}/merge.map
    echo "2 1-41" >> ${DDIR}/merge.map
 fi
 
