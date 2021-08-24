@@ -10,9 +10,8 @@ The list of telescopes to be extracted in step 1 is given in [CTA.prod3bS-M6C5a-
 
 Ready images can be pulled from docker hub with
 ```
-docker pull gernotmaier/eventdisplay-cta-dl1-prod3b-sct-merge:v02
+docker pull gernotmaier/eventdisplay-cta-dl1-prod3b-sct-merge:v03
 ```
-
 
 ## Building
 
@@ -45,3 +44,21 @@ $ ./run.sh \
     /data/gamma_20deg_0deg_run3227___cta-prod3_desert-2150m-Paranal-merged.simtel.gz \
     /data/gamma_20deg_0deg_run3227___cta-prod3-sct_desert-2150m-Paranal-SCT.simtel.gz
 ```
+
+## Publish on docker hub
+
+Check for image id:
+```
+docker images
+```
+
+Tag image (change version):
+```
+docker tag 62f1ea8a0a2b gernotmaier/eventdisplay-cta-dl1-prod3b-sct-merge:v03
+```
+
+Push image:
+```
+docker push gernotmaier/eventdisplay-cta-dl1-prod3b-sct-merge:v03
+```
+
