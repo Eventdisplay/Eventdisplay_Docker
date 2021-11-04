@@ -1,13 +1,17 @@
 # Introduction
 
-Experimental Docker files (and later images) are provided for different Eventdisplay applications. You must [have Docker installed](https://www.docker.com/community-edition#/download) to run these images.
+Docker files for different Eventdisplay applications - mostly for CTA and VERITAS. 
+
+Install [Docker](https://www.docker.com/community-edition#/download) to run these images.
 
 # Dockerfiles
 
-The following Docker files are available:
+Docker files are available for the following applications:
 
+- [CTA Sensitivity plotting](./cta-slib) - image from docker hub: [gernotmaier/eventdisplay-cta-slib](https://hub.docker.com/repository/docker/gernotmaier/eventdisplay-cta-slib)
 - [CTA DL1 Analysis (prod5)](./cta-DL1-prod5) - image from docker hub: [gernotmaier/eventdisplay-cta-dl1-prod5](https://hub.docker.com/r/gernotmaier/eventdisplay-cta-dl1-prod5)
-- [CTA DL1 Analysis (prod3b-SCT)](./cta-DL1-prod3b-SCT) - image from docker hub: [gernotmaier/eventdisplay-cta-dl1-prod3b-sct](https://hub.docker.com/r/gernotmaier/eventdisplay-cta-dl1-prod3b-sct)
+- [CTA DL1 prod3b-SCT Analysis](./cta-DL1-prod3b-SCT) - image from docker hub: [gernotmaier/eventdisplay-cta-dl1-prod3b-sct](https://hub.docker.com/r/gernotmaier/eventdisplay-cta-dl1-prod3b-sct)
+- [CTA DL1 prod3b-SCT-Alpha Analysis](./cta-DL1-prod3b-SCT-merge) - image from docker hub: [gernotmaier/eventdisplay-cta-dl1-prod3b-sct-merge](https://hub.docker.com/repository/docker/gernotmaier/eventdisplay-cta-dl1-prod3b-sct-merge) 
 - [VERITAS DLX Analysis](./vts-DLX)
 
 
