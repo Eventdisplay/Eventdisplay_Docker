@@ -1,5 +1,7 @@
 # Introduction
 
+[![DOI](https://zenodo.org/badge/278472802.svg)](https://zenodo.org/badge/latestdoi/278472802)
+
 Docker files for different Eventdisplay applications - mostly for CTA and VERITAS. 
 
 Install [Docker](https://www.docker.com/community-edition#/download) to run these images.
