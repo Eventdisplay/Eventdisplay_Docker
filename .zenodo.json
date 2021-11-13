@@ -1,0 +1,36 @@
+{
+    "title" : "Eventdisplay with Docker",
+    "description": "Docker files for different Eventdisplay applications - mostly for CTA and VERITAS.",
+    "license":  {
+      "id": "BSD-3-Clause"
+    },
+    "keywords": [
+      "gamma-ray astronomy",
+      "Imaging Atmospheric Cherenkov Telescope",
+      "VERITAS",
+      "CTA",
+      "Eventdisplay"
+    ],
+    "upload_type": "software",
+    "creators": [
+      {
+        "orcid": "0000-0001-9868-4700",
+        "affiliation": "DESY",
+        "name": "Maier, Gernot"
+      }
+    ],
+    "access_right": "open",
+    "related_identifiers": [
+      {
+        "scheme": "url",
+        "identifier": "https://arxiv.org/abs/1708.04048",
+        "relation": "isDocumentedBy",
+        "resource_type": "publication-preprint"
+      },
+      {
+        "scheme": "url",
+        "identifier": "https://github.com/Eventdisplay/Eventdisplay_Docker",
+        "relation": "isSupplementTo"
+      }
+    ]
+}
