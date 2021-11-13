@@ -25,6 +25,14 @@ Using the run script with an analysis example:
 v2dl3 -f /data/64080.anasum.root /data/effArea-v485-auxv01-CARE_June2020-Cut-NTel2-PointSource-Moderate-TMVA-BDT-GEO-V6_2012_2013a-ATM62-T1234.root /data/tt.fits.gz
 ```
 
+## Docker hub
+
+e.g.:
+```
+docker tag 526b6f7d5de8 gernotmaier/vts-v2dl3:v02
+docker push gernotmaier/vts-v2dl3:v02
+```
+
 ## Singularity
 
 Build a singularity image, as required for many HEP computing environments.
@@ -38,4 +46,8 @@ docker save 488f4c543443 -o vts-v2dl3.tar
 2. Convert Docker image to Singularity
 ```
 singularity build --sandbox sing_from_tar vts-v2dl3.tar
+```
+
+```
+singularity build --sandbox vts-v2dl3.sif docker://gernotmaier/vts-v2dl3:v02
 ```
