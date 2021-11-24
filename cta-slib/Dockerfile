@@ -27,39 +27,42 @@ RUN apt-get update && apt-get install -y \
   zstd
 RUN apt-get clean
 
-# Introduce user evndisp - stop being root
-#ARG username=evndisp
-#RUN useradd --create-home --home-dir /home/${username} ${username}
-#USER ${username}
-#WORKDIR /home/${username}
-#ENV EVNDISP /home/${username}
 WORKDIR /home/
 ENV EVNDISP /home/
 
 # Install ROOT
-RUN wget https://root.cern/download/root_v6.22.00.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
-    tar -xzf root_v6.22.00.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
-    rm -f root_v6.22.00.Linux-ubuntu20-x86_64-gcc9.3.tar.gz
+ARG ROOTVERSION=6.24.06
+RUN wget https://root.cern/download/root_v$ROOTVERSION.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
+    tar -xzf root_v$ROOTVERSION.Linux-ubuntu20-x86_64-gcc9.3.tar.gz && \
+    rm -f root_v$ROOTVERSION.Linux-ubuntu20-x86_64-gcc9.3.tar.gz
 ENV ROOTSYS ${EVNDISP}/root
 ENV LD_LIBRARY_PATH "${ROOTSYS}/lib/:${LD_LIBRARY_PATH}"
 ENV PATH ${ROOTSYS}/bin:${PATH}
 
 # Install Eventdisplay
+ARG EVNVERSION=5.6.7
 ENV EVNDISPSYS ${EVNDISP}/Eventdisplay/
 ENV SOFASYS ${EVNDISPSYS}/sofa/
-RUN wget https://github.com/Eventdisplay/Eventdisplay/archive/master.zip && \
-    unzip master.zip && rm -f master.zip && \
-    mv -f Eventdisplay-master Eventdisplay && \
+RUN wget https://github.com/Eventdisplay/Eventdisplay/archive/refs/tags/v$EVNVERSION.zip && \
+    unzip v$EVNVERSION.zip && rm -f v$EVNVERSION.zip && \
+    mv Eventdisplay-$EVNVERSION Eventdisplay && \
     cd ${EVNDISPSYS} && ls -l && ./install_sofa.sh && \
-    make -j 2 slib && strip -g lib/libVAnaSum.so &&  \
+    make -j 4 slib && strip -g lib/libVAnaSum.so &&  \
     rm -f obj/*.o obj/*.cpp
+
+#RUN wget https://github.com/Eventdisplay/Eventdisplay/archive/refs/heads/root-cpp-versions.zip && \
+#    unzip root-cpp-versions.zip && rm -f root-cpp-versions.zip && \
+#    mv Eventdisplay-root-cpp-versions Eventdisplay && \
+#    cd ${EVNDISPSYS} && ls -l && ./install_sofa.sh && \
+#    make -j 2 slib && strip -g lib/libVAnaSum.so &&  \
+#    rm -f obj/*.o obj/*.cpp
 
 ENV LD_LIBRARY_PATH "${EVNDISPSYS}/obj:${LD_LIBRARY_PATH}"
 ENV ROOT_INCLUDE_PATH ${EVNDISPSYS}/inc
 
 # Install Eventdisplay Analysis files
-RUN wget https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA/archive/master.zip && \
-    unzip master.zip && \
-    mv -f Eventdisplay_AnalysisFiles_CTA-master Eventdisplay_AnalysisFiles_CTA && \
-    rm -f master.zip
+ARG ANAVERSION=1.5.2
+RUN wget https://github.com/Eventdisplay/Eventdisplay_AnalysisFiles_CTA/archive/refs/tags/v$ANAVERSION.zip && \
+    unzip v$ANAVERSION.zip && rm -f v$ANAVERSION.zip && \
+    mv Eventdisplay_AnalysisFiles_CTA-$ANAVERSION Eventdisplay_AnalysisFiles_CTA
 ENV CTA_EVNDISP_AUX_DIR /home/Eventdisplay_AnalysisFiles_CTA/
