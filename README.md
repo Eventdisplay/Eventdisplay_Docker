@@ -1,4 +1,4 @@
-# Introduction
+# Eventdisplay with Docker
 
 [![DOI](https://zenodo.org/badge/278472802.svg)](https://zenodo.org/badge/latestdoi/278472802)
 

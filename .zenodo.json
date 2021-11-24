@@ -7,7 +7,7 @@
     "keywords": [
       "gamma-ray astronomy",
       "Imaging Atmospheric Cherenkov Telescope",
-      "VERITAS", 
+      "VERITAS",
       "CTA",
       "Eventdisplay"
     ],
@@ -28,7 +28,7 @@
         "resource_type": "publication-preprint"
       },
       {
-        "scheme": "url", 
+        "scheme": "url",
         "identifier": "https://github.com/Eventdisplay/Eventdisplay_Docker",
         "relation": "isSupplementTo"
       }
