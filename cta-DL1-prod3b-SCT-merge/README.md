@@ -1,5 +1,7 @@
 # Eventdisplay CTA DL1 Docker file - prod3b Alpha + SCT analysis
 
+**Note: most recent versions of these workflow can be found in the [prod3b-sctalpha-performance CTAO repository](https://gitlab.cta-observatory.org/cta-science/simulations/simulation-and-performance-parallel-mode/future-extensions/prod3b-sctalpha-performance/-/tree/main)**
+
 This Docker file and run script prepare the following workflow:
 
 1. extraction of CTA South Alpha configuration (approximation) from a prod3b file

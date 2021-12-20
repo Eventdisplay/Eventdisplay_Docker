@@ -94,7 +94,7 @@ $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 -imagesquared \
 
 ###########
 # cleanup
-rm -f /tmp/${OUTPUTFILE}.dst.root
+#rm -f /tmp/${OUTPUTFILE}.dst.root
 if [ -e /tmp/${OUTPUTFILE}.root ]; then
 	# move log files into evndisp output file
 	if [ -e /tmp/${OUTPUTFILE}.convert.log ]; then
@@ -104,4 +104,5 @@ if [ -e /tmp/${OUTPUTFILE}.root ]; then
 		$EVNDISPSYS/bin/logFile evndispLog /tmp/${OUTPUTFILE}.root /tmp/${OUTPUTFILE}.evndisp.log
     fi
     mv -f -v /tmp/${OUTPUTFILE}.root /data/
+    mv -f -v /tmp/${OUTPUTFILE}.dst.root /data/
 fi
