@@ -11,7 +11,7 @@ Building expects the following tar packages in the build directory:
 - root_v5.34.38.source.tar.gz 
 
 ```
-$ docker build -t vts-sl7-root-5.34.36 .
+$ docker build -t vts-5.34.38-sl7 .
 ```
 
 ## Running
@@ -19,6 +19,6 @@ $ docker build -t vts-sl7-root-5.34.36 .
 Run the image and provide a bash environment:
 
 ```
-$ docker run --rm -it -v "$(pwd):/workdir" vts-sl7-root-5.34.36 bash
+$ docker run --rm -it -v "$(pwd):/workdir" vts-5.34.38-sl7 bash
 ```
 
