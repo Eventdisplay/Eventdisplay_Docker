@@ -20,3 +20,10 @@ RUN tar -xzf VBF-0.3.4.tar.gz \
 ENV VBFSYS /VBF
 ENV LD_LIBRARY_PATH "${VBFSYS}/lib/:${LD_LIBRARY_PATH}"
 ENV PATH ${VBFSYS}/bin:${PATH}
+
+COPY root_v6.24.06.source.tar.gz root_v6.24.06.source.tar.gz
+
+RUN tar -czf root_v6.24.06.source.tar.gz \
+    && root_build root_install && cd root_build \
+    && cmake -DCMAKE_INSTALL_PREFIX=../root_install ../root-6.24.06
+    # && cmake --build . -- install -j4
