@@ -34,20 +34,22 @@ ENV PATH ${ROOTSYS}/bin:${PATH}
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p ${WORKDIR}/conda && \
     rm ~/miniconda.sh && \
+    ${WORKDIR}/conda/bin/conda install -c conda-forge mamba && \
     ${WORKDIR}/conda/bin/conda clean -tipsy
+
 ENV PATH /${WORKDIR}/conda/bin:$PATH
 
 # requires github user name and password (private repository)
-ARG GITUSER
-ARG GITPW
-RUN git clone https://$GITUSER:$GITPW@github.com/VERITAS-Observatory/V2DL3.git
+ARG GITHUBTOKEN
+RUN git clone https://$GITHUBTOKEN@github.com/VERITAS-Observatory/V2DL3.git
 RUN cd V2DL3 && \
     sed -i "s/v2dl3/base/" environment.yml && \
-    grep -v gammapy environment.yml | grep -v root | grep -v ipywidgets > environment.yml.tmp && \
+    grep -vE 'gammapy|python|root|ipywidgets' environment.yml > environment.yml.tmp && \
     mv -f environment.yml.tmp environment.yml && \
     echo "  - scipy" >> environment.yml && \
-    conda env update --file  environment.yml && \
-    conda clean --all
+    echo "  - python=$(root-config --python3-version)" >> environment.yml && \
+    mamba env update --file  environment.yml && \
+    mamba clean --all
 
 RUN cd V2DL3 && \
     pip install .
