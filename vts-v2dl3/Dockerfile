@@ -57,4 +57,4 @@ RUN cd V2DL3 && \
 COPY run.sh /workdir/
 
 RUN echo "source /workdir/root/bin/thisroot.sh" >> /etc/bash.bashrc
-ENTRYPOINT /bin/bash
+#ENTRYPOINT /bin/bash

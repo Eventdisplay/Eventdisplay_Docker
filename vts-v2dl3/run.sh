@@ -12,10 +12,13 @@
 # ./data/pointlike/64080.fits.gz
 # ./data/fullenclosure/64080.fits.ggz
 
+
 if [[ $# < 2 ]]; then
     echo "./run.sh <anasum file> <effective area file>"
     exit
 fi
+
+source /workdir/root/bin/thisroot.sh
 
 mkdir -p /data/pointlike/
 mkdir -p /data/fullenclosure/
