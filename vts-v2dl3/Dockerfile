@@ -41,7 +41,8 @@ ENV PATH /${WORKDIR}/conda/bin:$PATH
 
 # requires github user name and password (private repository)
 ARG GITHUBTOKEN
-RUN git clone https://$GITHUBTOKEN@github.com/VERITAS-Observatory/V2DL3.git
+ARG V2DL3VERSION="v0.1.0"
+RUN git clone --depth 1 --branch $V2DL3VERSION https://$GITHUBTOKEN@github.com/VERITAS-Observatory/V2DL3.git
 RUN cd V2DL3 && \
     sed -i "s/v2dl3/base/" environment.yml && \
     grep -vE 'gammapy|python|root|ipywidgets' environment.yml > environment.yml.tmp && \
