@@ -1,0 +1,15 @@
+FROM mambaorg/micromamba:latest
+
+LABEL maintainer.name="Eventdisplay Team"
+
+ENV WORKDIR /workdir
+WORKDIR ${WORKDIR}
+
+COPY --chown=$MAMBA_USER:$MAMBA_USER V2DL3_DL3array/environment-eventdisplay.yml /tmp/environment.yml
+
+RUN micromamba env create -y -f /tmp/environment.yml && \
+    micromamba clean --all --yes
+
+ARG MAMBA_DOCKERFILE_ACTIVATE=1
+ENV ENV_NAME v2dl3ED
+ENV PYTHONPATH $PYTHONPATH:/workdir/v2dl3
