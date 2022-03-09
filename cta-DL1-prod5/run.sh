@@ -69,21 +69,29 @@ ${EVNDISPSYS}/bin/CTA.convert_hessio_to_VDST -c ${IPRFILE} \
 	-o /tmp/${OUTPUTFILE}.dst.root \
 	${DATAFILE} > /tmp/${OUTPUTFILE}.convert.log
 
-$EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 -imagesquared \
-       	-reconstructionparameter EVNDISP.prod5.reconstruction.runparameter \
-       	-sourcefile /tmp/${OUTPUTFILE}.dst.root \
-       	-outputfile /tmp/${OUTPUTFILE}.root > /tmp/${OUTPUTFILE}.evndisp.log
+for IMAGE in lin sq2
+do
+    if [[ $IMAGE == "sq2" ]]; then
+        EVNDISPOPT="-imagesquared"
+        OFILENAME="${OUTPUTFILE}.sq2"
+    else
+        EVNDISPOPT="-writeimagepixellist"
+        OFILENAME="${OUTPUTFILE}.lin"
+    fi
+    $EVNDISPSYS/bin/evndisp -averagetzerofiducialradius=0.5 \
+            $EVNDISPOPT \
+            -reconstructionparameter EVNDISP.prod5.reconstruction.runparameter \
+            -sourcefile /tmp/"${OUTPUTFILE}".dst.root \
+            -outputfile /tmp/"${OFILENAME}".root > /tmp/"${OFILENAME}".evndisp.log
 
-###########
-# cleanup
+    if [ -e /tmp/${OFILENAME}.root ]; then
+        if [ -e /tmp/${OUTPUTFILE}.convert.log ]; then
+            $EVNDISPSYS/bin/logFile convLog /tmp/${OFILENAME}.root /tmp/${OUTPUTFILE}.convert.log
+        fi
+        if [ -e /tmp/${OFILENAME}.evndisp.log ]; then
+            $EVNDISPSYS/bin/logFile evndispLog /tmp/${OFILENAME}.root /tmp/${OFILENAME}.evndisp.log
+        fi
+        mv -f -v /tmp/${OFILENAME}.root /data/
+    fi
+done
 rm -f /tmp/${OUTPUTFILE}.dst.root
-if [ -e /tmp/${OUTPUTFILE}.root ]; then
-	# move log files into evndisp output file
-	if [ -e /tmp/${OUTPUTFILE}.convert.log ]; then
-		$EVNDISPSYS/bin/logFile convLog /tmp/${OUTPUTFILE}.root /tmp/${OUTPUTFILE}.convert.log
-    fi
-	if [ -e /tmp/${OUTPUTFILE}.evndisp.log ]; then
-		$EVNDISPSYS/bin/logFile evndispLog /tmp/${OUTPUTFILE}.root /tmp/${OUTPUTFILE}.evndisp.log
-    fi
-    mv -f -v /tmp/${OUTPUTFILE}.root /data/
-fi
