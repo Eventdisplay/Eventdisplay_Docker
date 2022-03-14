@@ -28,7 +28,7 @@ RUN tar -xvzf VBF-0.3.4.tar.gz && \
 ENV VBFSYS ${EVNDISP}/vbf/
 ENV PATH ${VBFSYS}/bin:${PATH}
 ENV LD_LIBRARY_PATH "${VBFSYS}/lib:${LD_LIBRARY_PATH}"
-#
+
 ## Install Eventdisplay
 ARG GITUSER
 ARG GITPW
