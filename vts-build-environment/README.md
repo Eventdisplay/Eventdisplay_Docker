@@ -1,5 +1,7 @@
 # VERITAS Analysis Environments
 
+(somewhat experimental)
+
 Images are available for:
 
 - sl7, root-5.34.36

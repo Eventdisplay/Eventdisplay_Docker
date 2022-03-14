@@ -16,6 +16,6 @@ $ docker build -t vts-6.24.06-ubuntu20.04 .
 Run the image and provide a bash environment:
 
 ```
-$ docker run --rm -it -v "$(pwd):/workdir" vts-6.24.06-ubuntu20.04 bash
+$ docker run --rm -it -v "$(pwd):/data" vts-6.24.06-ubuntu20.04 bash
 ```
 
