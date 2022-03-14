@@ -2,6 +2,13 @@
 
 Docker file for analysis VERITAS rawdata (vbf) and prepare a DL1 file.
 
+## Downloading
+
+A ready image is available from Dockerhub using
+```
+docker pull gernotmaier/eventdisplay-vts-dl1:v01
+```
+
 ## Building
 
 Building expects that a tar ball of vbf (VBF-0.3.4.tar.gz) is available in the building directory.
