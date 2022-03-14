@@ -39,7 +39,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linu
 
 ENV PATH /${WORKDIR}/conda/bin:$PATH
 
-# requires github user name and password (private repository)
+# requires github token
 ARG GITHUBTOKEN
 ARG V2DL3VERSION="v0.1.0"
 RUN git clone --depth 1 --branch $V2DL3VERSION https://$GITHUBTOKEN@github.com/VERITAS-Observatory/V2DL3.git
