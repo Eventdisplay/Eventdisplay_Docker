@@ -14,4 +14,7 @@ echo "starting docker and mounting pwd to /workdir"
 if [[ -n "$DDIR" ]]; then
     echo "   mounting data dir to $1"
 fi
-docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd)/data:/data/" -e DISPLAY=$ip:0 eventdisplay-vts-dl1 bash
+docker run --rm -it \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v "$(pwd)/data:/data/" \
+    -e DISPLAY=$ip:0 gernotmaier/eventdisplay-vts-dl1:v01 bash
