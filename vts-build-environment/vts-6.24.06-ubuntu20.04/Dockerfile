@@ -15,13 +15,14 @@ ENV VBFSYS /VBF
 ENV LD_LIBRARY_PATH "${VBFSYS}/lib/:${LD_LIBRARY_PATH}"
 ENV PATH ${VBFSYS}/bin:${PATH}
 
-COPY EventDisplay_v4-486b.tar.gz EventDisplay_v4-486b.tar.gz
+COPY EventDisplay_v4-487e.tar.gz EventDisplay_v4-487e.tar.gz
 RUN mkdir -p /Eventdisplay/
 ENV EVNDISPSYS /Eventdisplay
 ENV LD_LIBRARY_PATH "${EVNDISPSYS}/lib:${ROOTSYS}/lib:${VBFSYS}/lib:${LD_LIBRARY_PATH}"
 
-RUN tar -xzf EventDisplay_v4-486b.tar.gz -C /Eventdisplay/ \
-    && cd /Eventdisplay/ && mv EventDisplay_v4-486b/* . \
+RUN tar -xzf EventDisplay_v4-487e.tar.gz -C /Eventdisplay/ \
+    && rm -f EventDisplay_v4-487e.tar.gz \
+    && cd /Eventdisplay/ && mv EventDisplay_v4-487e/* . \
     && sed -i "s/c++11/c++14/" Makefile \
     && make VTS
 
