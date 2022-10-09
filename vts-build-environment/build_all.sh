@@ -12,13 +12,13 @@ EVNDISP_VERSION="v490-dev-v0.7"
 SOFA_VERSION="20210512"
 
 ROOT5=( vts-5.34.38-sl7 )
-ROOT6cpp17=( latest vts-6.26.06-ubuntu22.04 6.26.06-fedora35 )
+ROOT6cpp17=( latest 6.26.06-ubuntu22.04 6.26.06-fedora35 )
 ROOT6cpp11=( 6.24.06-centos7 6.22.08-ubuntu20.04 )
 
 # TESTING
-ROOT6cpp17=( vts-6.26.06-ubuntu22.04 )
 ROOT6cpp17=( 6.26.06-fedora35 )
 ROOT6cpp11=( 6.24.06-centos7 )
+ROOT6cpp17=( latest )
 
 VERSION="0.1"
 VERSION=""
@@ -53,10 +53,10 @@ build_root5()
         docker build --progress plain -t ${F} .
         rm -f VBF-0.3.4.tar.gz
         rm -f root_v5.34.38.source.tar.gz
-        if [[ ! -z ${VERSION} ]]; then
-            docker tag ${F} gernotmaier/${F}:${VERSION}
-            docker push gernotmaier/${F}:${VERSION}
-        fi
+        # if [[ ! -z ${VERSION} ]]; then
+        #    docker tag ${F} gernotmaier/${F}:${VERSION}
+        #    docker push gernotmaier/${F}:${VERSION}
+        #fi
 
         # adding eventdisplay
 #        git clone git@github.com:VERITAS-Observatory/EventDisplay_v4.git
@@ -87,6 +87,5 @@ build_root6()
 
 # prepare_code_packages
 build_root6 ${DOCKERFILE} "${ROOT6cpp17}" "VBF-0.3.4-cpp17.tar.gz"
-build_root6 ${DOCKERFILE} "${ROOT6cpp11}" "VBF-0.3.4.tar.gz"
-
+# build_root6 ${DOCKERFILE} "${ROOT6cpp11}" "VBF-0.3.4.tar.gz"
 # build_root5
