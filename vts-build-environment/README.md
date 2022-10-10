@@ -24,3 +24,9 @@ Run (takes a while):
 - [ ] vts-6.22.08-fedora34 (VBF fails compilation)
 - [ ] vts-6.22.06-fedora33 (evndisp fails compilation without minuit, mva)
 - [ ] vts-6.22.08-centos7 (evndisp fails compilation without minuit, mva)
+
+## Testing
+
+```
+$ ./bin/evndisp -display=1 -sourcefile /CARE_June2020/gamma_V6_CARE_std_Atmosphere62_zen20deg_0.5wob_160MHz_1.vbf -sourcetype=2  -reconstructionparameter EVNDISP.reconstruction.runparameter.v4x
+```
